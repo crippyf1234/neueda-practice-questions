@@ -35,6 +35,8 @@ public class HigherorLower {
 			
 		 }
 		
+		sc.close();
+		
 		System.out.println("Congrats you have guessed the number!");
 	}
 
