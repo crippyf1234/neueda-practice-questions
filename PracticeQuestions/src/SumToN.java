@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SumToN {
@@ -5,20 +6,25 @@ public class SumToN {
 	public static void main(String[] args) {
 	
 		int sum = 0;
-		
-		System.out.println("Hello. Please enter an integer.");
+		int inputNumber;
+		System.out.println("Hello. Please enter a positive integer.");
 		
 		Scanner sc = new Scanner(System.in);
-
-		Double inputNumber = sc.nextDouble();
 		
-		String inputNumberString = inputNumber.toString();
-		
-		while(inputNumber < 1 || !isStringInteger(inputNumberString)) {
-			System.out.println("Please enter a POSITIVE INTEGER!");
-			inputNumber = sc.nextDouble();
+		try {
+			inputNumber = sc.nextInt();
+			while(inputNumber < 1) {
+				System.out.println("Please enter a POSITIVE INTEGER!");
+				inputNumber = sc.nextInt();
+			}
 		}
 		
+		catch(InputMismatchException e){
+			System.out.println("Please enter an INTEGER!");
+			sc.next();
+		}
+		
+	
 		for(int i = 1 ; i < inputNumber + 1 ; i ++) {
 			
 			sum += i;
@@ -30,13 +36,4 @@ public class SumToN {
 		
 	}
 	
-	public static boolean isStringInteger(String number ){
-	    try{
-	        Integer.parseInt(number);
-	    }catch(Exception e ){
-	        return false;
-	    }
-	    return true;
-	}
-
 }
